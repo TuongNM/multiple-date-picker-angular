@@ -43,13 +43,14 @@ export const DEFAULT_STYLES = `
     .multiple-date-picker,.picker-days-row,.picker-days-week-row,.picker-top-row {
         width: 100%
     }
+
+    .picker-top-row {
+        display: flex;
+        justify-content: space-between;
+    }
     
     .picker-top-row>div {
         display: inline-block
-    }
-    
-    .picker-navigate {
-        width: 16.5%
     }
     
     .picker-navigate:hover {
@@ -59,10 +60,6 @@ export const DEFAULT_STYLES = `
     .picker-navigate.disabled,.picker-navigate.disabled:hover {
         color: #ddd;
         cursor: default
-    }
-    
-    .picker-month {
-        width: 65%
     }
     
     .picker-days-row>div,.picker-days-week-row>div {
