@@ -82,7 +82,11 @@ var MultipleDatePickerComponent = (function () {
     };
     MultipleDatePickerComponent.prototype.getDaysOfWeek = function () {
         /*To display days of week names in moment.lang*/
-        var momentDaysOfWeek = moment().localeData().weekdaysMin(), daysOfWeek = [];
+        var weekdayMoment = moment();
+        if (this.calendarMoment) {
+            weekdayMoment = this.calendarMoment;
+        }
+        var momentDaysOfWeek = weekdayMoment.localeData().weekdaysMin(), daysOfWeek = [];
         for (var i = 1; i < 7; i++) {
             daysOfWeek.push(momentDaysOfWeek[i]);
         }
@@ -338,6 +342,7 @@ var MultipleDatePickerComponent = (function () {
     /** @nocollapse */
     MultipleDatePickerComponent.ctorParameters = function () { return []; };
     MultipleDatePickerComponent.propDecorators = {
+        'calendarMoment': [{ type: core_1.Input },],
         'highlightDays': [{ type: core_1.Input },],
         'dayClick': [{ type: core_1.Input },],
         'dayHover': [{ type: core_1.Input },],

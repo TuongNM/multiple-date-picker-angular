@@ -16,6 +16,7 @@ import * as moment from 'moment/moment';
       ]
 })
 export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor {
+    @Input() calendarMoment: moment.Moment;
     @Input() highlightDays: Array<any>;
     @Input() dayClick: any;
     @Input() dayHover: string;
@@ -124,7 +125,13 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     }
     getDaysOfWeek() {
         /*To display days of week names in moment.lang*/
-        let momentDaysOfWeek = moment().localeData().weekdaysMin(),
+        let weekdayMoment = moment();
+        if (this.calendarMoment)
+        {
+            weekdayMoment = this.calendarMoment;
+        }
+
+        let momentDaysOfWeek = weekdayMoment.localeData().weekdaysMin(),
             daysOfWeek = [];
         for (var i = 1; i < 7; i++) {
             daysOfWeek.push(momentDaysOfWeek[i]);

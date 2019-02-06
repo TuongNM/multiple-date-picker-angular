@@ -118,7 +118,11 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                 };
                 MultipleDatePickerComponent.prototype.getDaysOfWeek = function () {
                     /*To display days of week names in moment.lang*/
-                    var momentDaysOfWeek = moment().localeData().weekdaysMin(), daysOfWeek = [];
+                    var weekdayMoment = moment();
+                    if (this.calendarMoment) {
+                        weekdayMoment = this.calendarMoment;
+                    }
+                    var momentDaysOfWeek = weekdayMoment.localeData().weekdaysMin(), daysOfWeek = [];
                     for (var i = 1; i < 7; i++) {
                         daysOfWeek.push(momentDaysOfWeek[i]);
                     }
@@ -357,6 +361,10 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                 MultipleDatePickerComponent.prototype.findArrayofDays = function () {
                     console.log('this.projectScope = ' + this.projectScope);
                 };
+                __decorate([
+                    core_1.Input(),
+                    __metadata("design:type", Object)
+                ], MultipleDatePickerComponent.prototype, "calendarMoment", void 0);
                 __decorate([
                     core_1.Input(),
                     __metadata("design:type", Array)

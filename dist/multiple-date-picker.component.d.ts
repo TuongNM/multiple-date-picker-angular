@@ -2,6 +2,7 @@ import { OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import * as moment from 'moment/moment';
 export declare class MultipleDatePickerComponent implements OnInit, ControlValueAccessor {
+    calendarMoment: moment.Moment;
     highlightDays: Array<any>;
     dayClick: any;
     dayHover: string;
