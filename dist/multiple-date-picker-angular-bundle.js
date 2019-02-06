@@ -459,6 +459,10 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                 ], MultipleDatePickerComponent.prototype, "projectScope", void 0);
                 __decorate([
                     core_1.Input(),
+                    __metadata("design:type", Object)
+                ], MultipleDatePickerComponent.prototype, "daysOff", void 0);
+                __decorate([
+                    core_1.Input(),
                     __metadata("design:type", Boolean)
                 ], MultipleDatePickerComponent.prototype, "sundayFirstDay", void 0);
                 __decorate([

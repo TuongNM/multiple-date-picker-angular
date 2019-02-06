@@ -43,7 +43,7 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     @Input() month = moment().startOf('day');  // today's day at start of day midnight or passed in value
     @Input() projectScope: Array<any> = [];
     days: Array<any> = [];
-    daysOff: any = this.daysOff || [];
+    @Input() daysOff: any = this.daysOff || [];
     disableBackButton: any = false;
     disableNextButton: any = false;
     daysOfWeek: Array<any> = [];

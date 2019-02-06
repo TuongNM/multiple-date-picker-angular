@@ -366,6 +366,7 @@ var MultipleDatePickerComponent = (function () {
         'changeYearFuture': [{ type: core_1.Input },],
         'month': [{ type: core_1.Input },],
         'projectScope': [{ type: core_1.Input },],
+        'daysOff': [{ type: core_1.Input },],
         'sundayFirstDay': [{ type: core_1.Input },],
         '_projectScope': [{ type: core_1.Input },],
     };
