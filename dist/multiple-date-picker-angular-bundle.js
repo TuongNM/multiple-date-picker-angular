@@ -289,7 +289,7 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                         ((this.weekDaysOff instanceof Array) && this.weekDaysOff.some(function (dayOff) {
                             return day.date.day() === dayOff;
                         })) ||
-                        ((this.daysOff === Array) && this.daysOff.some(function (dayOff) {
+                        ((this.daysOff instanceof Array) && this.daysOff.some(function (dayOff) {
                             return day.date.isSame(dayOff, 'day');
                         })) ||
                         ((this.daysAllowed === Array) && !this.daysAllowed.some(function (dayAllowed) {
