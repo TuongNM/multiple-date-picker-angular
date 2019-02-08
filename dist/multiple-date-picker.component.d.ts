@@ -15,7 +15,6 @@ export declare class MultipleDatePickerComponent implements OnInit, ControlValue
     weekDaysOff: Array<number>;
     allDaysOff: string;
     daysAllowed: any;
-    disableNavigation: boolean;
     disallowBackPastMonths: boolean;
     disallowGoFuturMonths: string;
     showDaysOfSurroundingMonths: boolean;
@@ -31,8 +30,8 @@ export declare class MultipleDatePickerComponent implements OnInit, ControlValue
     projectScope: Array<any>;
     days: Array<any>;
     daysOff: any;
-    disableBackButton: any;
-    disableNextButton: any;
+    disableBackButton: boolean;
+    disableNextButton: boolean;
     daysOfWeek: Array<any>;
     yearsForSelect: any;
     monthToDisplay: string;
@@ -47,7 +46,6 @@ export declare class MultipleDatePickerComponent implements OnInit, ControlValue
     registerOnTouched(): void;
     _projectScope: any[];
     projectScope2: any[];
-    checkNavigationButtons(): void;
     getDaysOfWeek(): any[];
     getMonthYearToDisplay(): string;
     getYearsForSelect(): any[];

@@ -29,7 +29,6 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     @Input() weekDaysOff: Array<number>;
     @Input() allDaysOff: string;
     @Input() daysAllowed: any;
-    @Input() disableNavigation: boolean;
     @Input() disallowBackPastMonths: boolean;
     @Input() disallowGoFuturMonths: string;
     @Input() showDaysOfSurroundingMonths: boolean;
@@ -45,8 +44,8 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     @Input() projectScope: Array<any> = [];
     days: Array<any> = [];
     @Input() daysOff: any = this.daysOff || [];
-    disableBackButton: any = false;
-    disableNextButton: any = false;
+    @Input() disableBackButton: boolean = false;
+    @Input() disableNextButton: boolean = false;
     daysOfWeek: Array<any> = [];
     // _cssDaysOfSurroundingMonths: any = this._cssDaysOfSurroundingMonths || 'picker-empty';
     yearsForSelect: any = [];
@@ -116,13 +115,6 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     set projectScope2(val) {
         this._projectScope = val;
         this.propagateChange(this._projectScope);
-    }
-    checkNavigationButtons() {
-        let today = moment(),
-        previousMonth = moment(this.month).subtract(1, 'month'),
-        nextMonth = moment(this.month).add(1, 'month');
-        this.disableBackButton = this.disableNavigation || (this.disallowBackPastMonths && today.isAfter(previousMonth, 'month'));
-        this.disableNextButton = this.disableNavigation || (this.disallowGoFuturMonths && today.isBefore(nextMonth, 'month'));
     }
     getDaysOfWeek() {
         /*To display days of week names in moment.lang*/
@@ -366,7 +358,6 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
             days.push(createDate());
         }
         this.days = days;
-        this.checkNavigationButtons();
         this.propagateChange(this.projectScope);
     }
     findArrayofDays() {

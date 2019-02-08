@@ -78,11 +78,6 @@ var MultipleDatePickerComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    MultipleDatePickerComponent.prototype.checkNavigationButtons = function () {
-        var today = moment(), previousMonth = moment(this.month).subtract(1, 'month'), nextMonth = moment(this.month).add(1, 'month');
-        this.disableBackButton = this.disableNavigation || (this.disallowBackPastMonths && today.isAfter(previousMonth, 'month'));
-        this.disableNextButton = this.disableNavigation || (this.disallowGoFuturMonths && today.isBefore(nextMonth, 'month'));
-    };
     MultipleDatePickerComponent.prototype.getDaysOfWeek = function () {
         /*To display days of week names in moment.lang*/
         var weekdayMoment = moment();
@@ -311,7 +306,6 @@ var MultipleDatePickerComponent = (function () {
             days.push(createDate());
         }
         this.days = days;
-        this.checkNavigationButtons();
         this.propagateChange(this.projectScope);
     };
     MultipleDatePickerComponent.prototype.findArrayofDays = function () {
@@ -347,7 +341,6 @@ var MultipleDatePickerComponent = (function () {
         'weekDaysOff': [{ type: core_1.Input },],
         'allDaysOff': [{ type: core_1.Input },],
         'daysAllowed': [{ type: core_1.Input },],
-        'disableNavigation': [{ type: core_1.Input },],
         'disallowBackPastMonths': [{ type: core_1.Input },],
         'disallowGoFuturMonths': [{ type: core_1.Input },],
         'showDaysOfSurroundingMonths': [{ type: core_1.Input },],
@@ -360,6 +353,8 @@ var MultipleDatePickerComponent = (function () {
         'month': [{ type: core_1.Input },],
         'projectScope': [{ type: core_1.Input },],
         'daysOff': [{ type: core_1.Input },],
+        'disableBackButton': [{ type: core_1.Input },],
+        'disableNextButton': [{ type: core_1.Input },],
         'sundayFirstDay': [{ type: core_1.Input },],
         '_projectScope': [{ type: core_1.Input },],
     };

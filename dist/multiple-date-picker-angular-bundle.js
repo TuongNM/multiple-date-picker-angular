@@ -114,11 +114,6 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     enumerable: true,
                     configurable: true
                 });
-                MultipleDatePickerComponent.prototype.checkNavigationButtons = function () {
-                    var today = moment(), previousMonth = moment(this.month).subtract(1, 'month'), nextMonth = moment(this.month).add(1, 'month');
-                    this.disableBackButton = this.disableNavigation || (this.disallowBackPastMonths && today.isAfter(previousMonth, 'month'));
-                    this.disableNextButton = this.disableNavigation || (this.disallowGoFuturMonths && today.isBefore(nextMonth, 'month'));
-                };
                 MultipleDatePickerComponent.prototype.getDaysOfWeek = function () {
                     /*To display days of week names in moment.lang*/
                     var weekdayMoment = moment();
@@ -347,7 +342,6 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                         days.push(createDate());
                     }
                     this.days = days;
-                    this.checkNavigationButtons();
                     this.propagateChange(this.projectScope);
                 };
                 MultipleDatePickerComponent.prototype.findArrayofDays = function () {
@@ -408,10 +402,6 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                 __decorate([
                     core_1.Input(),
                     __metadata("design:type", Boolean)
-                ], MultipleDatePickerComponent.prototype, "disableNavigation", void 0);
-                __decorate([
-                    core_1.Input(),
-                    __metadata("design:type", Boolean)
                 ], MultipleDatePickerComponent.prototype, "disallowBackPastMonths", void 0);
                 __decorate([
                     core_1.Input(),
@@ -457,6 +447,14 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     core_1.Input(),
                     __metadata("design:type", Object)
                 ], MultipleDatePickerComponent.prototype, "daysOff", void 0);
+                __decorate([
+                    core_1.Input(),
+                    __metadata("design:type", Boolean)
+                ], MultipleDatePickerComponent.prototype, "disableBackButton", void 0);
+                __decorate([
+                    core_1.Input(),
+                    __metadata("design:type", Boolean)
+                ], MultipleDatePickerComponent.prototype, "disableNextButton", void 0);
                 __decorate([
                     core_1.Input(),
                     __metadata("design:type", Boolean)
