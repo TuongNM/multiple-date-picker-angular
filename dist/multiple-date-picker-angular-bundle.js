@@ -41,6 +41,8 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
         execute: function () {
             MultipleDatePickerComponent = (function () {
                 function MultipleDatePickerComponent() {
+                    this.didSelectDay = new core_1.EventEmitter();
+                    this.didDeselectDay = new core_1.EventEmitter();
                     this.monthChanged = new core_1.EventEmitter();
                     this.cssDaysOfSurroundingMonths = this.cssDaysOfSurroundingMonths || 'picker-empty';
                     this.arrow = 0;
@@ -159,21 +161,11 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     event.preventDefault = function () {
                         prevented = true;
                     };
-                    if (typeof this.dayClick == 'function') {
-                        if (!day.mdp.selected) {
-                            this.projectScope = [day.date];
-                            this.generate();
-                            this.dayClick(event, day);
-                        }
-                        else {
-                            this.clearDays();
-                            this.dayClick(event, day);
-                        }
-                    }
                     if (day.selectable && !prevented) {
                         day.mdp.selected = !day.mdp.selected;
                         if (day.mdp.selected) {
                             this.projectScope.push(day.date);
+                            this.didSelectDay.emit(day.date);
                             // console.log('this project scope = ' + this.projectScope); // for testing keep!
                         }
                         else {
@@ -194,6 +186,7 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                             }
                             if (idx !== -1) {
                                 this.projectScope.splice(idx, 1);
+                                this.didDeselectDay.emit(day.date);
                             }
                         }
                     }
@@ -369,9 +362,13 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     __metadata("design:type", Array)
                 ], MultipleDatePickerComponent.prototype, "highlightDays", void 0);
                 __decorate([
-                    core_1.Input(),
+                    core_1.Output(),
                     __metadata("design:type", Object)
-                ], MultipleDatePickerComponent.prototype, "dayClick", void 0);
+                ], MultipleDatePickerComponent.prototype, "didSelectDay", void 0);
+                __decorate([
+                    core_1.Output(),
+                    __metadata("design:type", Object)
+                ], MultipleDatePickerComponent.prototype, "didDeselectDay", void 0);
                 __decorate([
                     core_1.Input(),
                     __metadata("design:type", String)

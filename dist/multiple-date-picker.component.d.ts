@@ -4,7 +4,8 @@ import * as moment from 'moment/moment';
 export declare class MultipleDatePickerComponent implements OnInit, ControlValueAccessor {
     calendarMoment: moment.Moment;
     highlightDays: Array<any>;
-    dayClick: any;
+    didSelectDay: EventEmitter<moment.Moment>;
+    didDeselectDay: EventEmitter<moment.Moment>;
     dayHover: string;
     rightClick: string;
     monthChanged: EventEmitter<moment.Moment>;

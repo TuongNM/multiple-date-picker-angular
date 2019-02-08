@@ -6,6 +6,8 @@ var template_1 = require("./template");
 var moment = require("moment/moment");
 var MultipleDatePickerComponent = (function () {
     function MultipleDatePickerComponent() {
+        this.didSelectDay = new core_1.EventEmitter();
+        this.didDeselectDay = new core_1.EventEmitter();
         this.monthChanged = new core_1.EventEmitter();
         this.cssDaysOfSurroundingMonths = this.cssDaysOfSurroundingMonths || 'picker-empty';
         this.arrow = 0;
@@ -123,21 +125,11 @@ var MultipleDatePickerComponent = (function () {
         event.preventDefault = function () {
             prevented = true;
         };
-        if (typeof this.dayClick == 'function') {
-            if (!day.mdp.selected) {
-                this.projectScope = [day.date];
-                this.generate();
-                this.dayClick(event, day);
-            }
-            else {
-                this.clearDays();
-                this.dayClick(event, day);
-            }
-        }
         if (day.selectable && !prevented) {
             day.mdp.selected = !day.mdp.selected;
             if (day.mdp.selected) {
                 this.projectScope.push(day.date);
+                this.didSelectDay.emit(day.date);
                 // console.log('this project scope = ' + this.projectScope); // for testing keep!
             }
             else {
@@ -158,6 +150,7 @@ var MultipleDatePickerComponent = (function () {
                 }
                 if (idx !== -1) {
                     this.projectScope.splice(idx, 1);
+                    this.didDeselectDay.emit(day.date);
                 }
             }
         }
@@ -343,7 +336,8 @@ var MultipleDatePickerComponent = (function () {
     MultipleDatePickerComponent.propDecorators = {
         'calendarMoment': [{ type: core_1.Input },],
         'highlightDays': [{ type: core_1.Input },],
-        'dayClick': [{ type: core_1.Input },],
+        'didSelectDay': [{ type: core_1.Output },],
+        'didDeselectDay': [{ type: core_1.Output },],
         'dayHover': [{ type: core_1.Input },],
         'rightClick': [{ type: core_1.Input },],
         'monthChanged': [{ type: core_1.Output },],

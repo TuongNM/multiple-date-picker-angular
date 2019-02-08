@@ -18,7 +18,8 @@ import * as moment from 'moment/moment';
 export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor {
     @Input() calendarMoment: moment.Moment;
     @Input() highlightDays: Array<any>;
-    @Input() dayClick: any;
+    @Output() didSelectDay = new EventEmitter<moment.Moment>();
+    @Output() didDeselectDay = new EventEmitter<moment.Moment>();
     @Input() dayHover: string;
     @Input() rightClick: string;
     @Output() monthChanged = new EventEmitter<moment.Moment>();
@@ -171,20 +172,12 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
         event.preventDefault = () => {
             prevented = true;
         }
-        if (typeof this.dayClick == 'function') {
-            if (!day.mdp.selected) {
-                this.projectScope = [day.date];
-                this.generate();
-                this.dayClick(event, day);
-            } else {
-                this.clearDays();
-                this.dayClick(event, day);
-            }
-        }
+
         if (day.selectable && !prevented) {
             day.mdp.selected = !day.mdp.selected;
             if (day.mdp.selected) {
                 this.projectScope.push(day.date);
+                this.didSelectDay.emit(day.date);
                 // console.log('this project scope = ' + this.projectScope); // for testing keep!
             } else {
                 let idx = -1;
@@ -203,6 +196,7 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
                 }
                 if (idx !== -1){
                     this.projectScope.splice(idx, 1);
+                    this.didDeselectDay.emit(day.date);
                 } 
             }
         }
