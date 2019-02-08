@@ -6,6 +6,7 @@ var template_1 = require("./template");
 var moment = require("moment/moment");
 var MultipleDatePickerComponent = (function () {
     function MultipleDatePickerComponent() {
+        this.monthChanged = new core_1.EventEmitter();
         this.cssDaysOfSurroundingMonths = this.cssDaysOfSurroundingMonths || 'picker-empty';
         this.arrow = 0;
         this.month = moment().startOf('day'); // today's day at start of day midnight or passed in value
@@ -234,9 +235,7 @@ var MultipleDatePickerComponent = (function () {
         if (!prevented) {
             var oldMonth = moment(this.month);
             this.month = monthTo;
-            if (typeof this.monthChanged == 'function') {
-                this.monthChanged(this.month, oldMonth);
-            }
+            this.monthChanged.emit(this.month);
             this.generate();
         }
     };
@@ -347,7 +346,7 @@ var MultipleDatePickerComponent = (function () {
         'dayClick': [{ type: core_1.Input },],
         'dayHover': [{ type: core_1.Input },],
         'rightClick': [{ type: core_1.Input },],
-        'monthChanged': [{ type: core_1.Input },],
+        'monthChanged': [{ type: core_1.Output },],
         'fontAwesome': [{ type: core_1.Input },],
         'matIcons': [{ type: core_1.Input },],
         'monthClick': [{ type: core_1.Input },],

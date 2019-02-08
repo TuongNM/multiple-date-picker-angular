@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {DEFAULT_TEMPLATE, DEFAULT_STYLES} from './template';
 import * as moment from 'moment/moment';
@@ -21,7 +21,7 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     @Input() dayClick: any;
     @Input() dayHover: string;
     @Input() rightClick: string;
-    @Input() monthChanged: any;
+    @Output() monthChanged = new EventEmitter<moment.Moment>();
     @Input() fontAwesome: boolean;
     @Input() matIcons: boolean;
     @Input() monthClick: string;
@@ -280,9 +280,8 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
         if (!prevented) {
             let oldMonth = moment(this.month);
             this.month = monthTo;
-            if (typeof this.monthChanged == 'function') {
-                this.monthChanged(this.month, oldMonth);
-            }
+
+            this.monthChanged.emit(this.month);
             this.generate();
         }
     }

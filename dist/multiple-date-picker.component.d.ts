@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { EventEmitter, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import * as moment from 'moment/moment';
 export declare class MultipleDatePickerComponent implements OnInit, ControlValueAccessor {
@@ -7,7 +7,7 @@ export declare class MultipleDatePickerComponent implements OnInit, ControlValue
     dayClick: any;
     dayHover: string;
     rightClick: string;
-    monthChanged: any;
+    monthChanged: EventEmitter<moment.Moment>;
     fontAwesome: boolean;
     matIcons: boolean;
     monthClick: string;

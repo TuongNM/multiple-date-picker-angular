@@ -41,6 +41,7 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
         execute: function () {
             MultipleDatePickerComponent = (function () {
                 function MultipleDatePickerComponent() {
+                    this.monthChanged = new core_1.EventEmitter();
                     this.cssDaysOfSurroundingMonths = this.cssDaysOfSurroundingMonths || 'picker-empty';
                     this.arrow = 0;
                     this.month = moment().startOf('day'); // today's day at start of day midnight or passed in value
@@ -270,9 +271,7 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     if (!prevented) {
                         var oldMonth = moment(this.month);
                         this.month = monthTo;
-                        if (typeof this.monthChanged == 'function') {
-                            this.monthChanged(this.month, oldMonth);
-                        }
+                        this.monthChanged.emit(this.month);
                         this.generate();
                     }
                 };
@@ -382,7 +381,7 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     __metadata("design:type", String)
                 ], MultipleDatePickerComponent.prototype, "rightClick", void 0);
                 __decorate([
-                    core_1.Input(),
+                    core_1.Output(),
                     __metadata("design:type", Object)
                 ], MultipleDatePickerComponent.prototype, "monthChanged", void 0);
                 __decorate([
