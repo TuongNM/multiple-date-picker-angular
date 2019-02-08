@@ -20,8 +20,8 @@ export declare class MultipleDatePickerComponent implements OnInit, ControlValue
     showDaysOfSurroundingMonths: boolean;
     cssDaysOfSurroundingMonths: any;
     fireEventsForDaysOfSurroundingMonths: string;
-    disableDaysBefore: any;
-    disableDaysAfter: any;
+    disableDaysBefore: moment.Moment;
+    disableDaysAfter: moment.Moment;
     changeYearPast: string;
     changeYearFuture: string;
     arrow: number;

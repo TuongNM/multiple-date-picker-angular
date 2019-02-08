@@ -271,8 +271,8 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                 /*Check if the date is off : unselectable*/
                 MultipleDatePickerComponent.prototype.isDayOff = function (day) {
                     return this.allDaysOff ||
-                        (this.disableDaysBefore && moment(day.date).isBefore(moment(), 'day')) ||
-                        (!!this.disableDaysAfter && moment(day.date).isAfter(moment(), 'day')) ||
+                        (this.disableDaysBefore && moment(day.date).isBefore(this.disableDaysBefore, 'day')) ||
+                        (!!this.disableDaysAfter && moment(day.date).isAfter(this.disableDaysAfter, 'day')) ||
                         ((this.weekDaysOff instanceof Array) && this.weekDaysOff.some(function (dayOff) {
                             return day.date.day() === dayOff;
                         })) ||
