@@ -120,11 +120,13 @@ var MultipleDatePickerComponent = (function () {
         event.preventDefault = function () {
             prevented = true;
         };
+        var didSelectDay = false;
+        var didDeselectDay = false;
         if (day.selectable && !prevented) {
             day.mdp.selected = !day.mdp.selected;
             if (day.mdp.selected) {
                 this.projectScope.push(day.date);
-                this.didSelectDay.emit(day.date);
+                didSelectDay = true;
                 // console.log('this project scope = ' + this.projectScope); // for testing keep!
             }
             else {
@@ -145,11 +147,17 @@ var MultipleDatePickerComponent = (function () {
                 }
                 if (idx !== -1) {
                     this.projectScope.splice(idx, 1);
-                    this.didDeselectDay.emit(day.date);
+                    didDeselectDay = true;
                 }
             }
         }
         this.propagateChange(this.projectScope);
+        if (didSelectDay) {
+            this.didSelectDay.emit(day.date);
+        }
+        else if (didDeselectDay) {
+            this.didDeselectDay.emit(day.date);
+        }
     };
     MultipleDatePickerComponent.prototype.clearDays = function () {
         this.projectScope = [];
