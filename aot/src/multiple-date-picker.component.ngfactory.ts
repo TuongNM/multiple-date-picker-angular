@@ -230,8 +230,8 @@ export const MultipleDatePickerComponentNgFactory:i0.ComponentFactory<i3.Multipl
         disallowGoFuturMonths:'disallowGoFuturMonths',showDaysOfSurroundingMonths:'showDaysOfSurroundingMonths',
         cssDaysOfSurroundingMonths:'cssDaysOfSurroundingMonths',fireEventsForDaysOfSurroundingMonths:'fireEventsForDaysOfSurroundingMonths',
         disableDaysBefore:'disableDaysBefore',disableDaysAfter:'disableDaysAfter',
-        changeYearPast:'changeYearPast',changeYearFuture:'changeYearFuture',month:'month',
-        projectScope:'projectScope',daysOff:'daysOff',disableBackButton:'disableBackButton',
+        changeYearPast:'changeYearPast',changeYearFuture:'changeYearFuture',allowDaySelection:'allowDaySelection',
+        month:'month',projectScope:'projectScope',daysOff:'daysOff',disableBackButton:'disableBackButton',
         disableNextButton:'disableNextButton',sundayFirstDay:'sundayFirstDay',_projectScope:'_projectScope'},
     {didSelectDay:'didSelectDay',didDeselectDay:'didDeselectDay',monthChanged:'monthChanged'},
     ([] as any[]));

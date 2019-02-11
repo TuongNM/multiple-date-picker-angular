@@ -10,6 +10,7 @@ var MultipleDatePickerComponent = (function () {
         this.didDeselectDay = new core_1.EventEmitter();
         this.monthChanged = new core_1.EventEmitter();
         this.cssDaysOfSurroundingMonths = this.cssDaysOfSurroundingMonths || 'picker-empty';
+        this.allowDaySelection = true;
         this.arrow = 0;
         this.month = moment().startOf('day'); // today's day at start of day midnight or passed in value
         this.projectScope = [];
@@ -113,7 +114,10 @@ var MultipleDatePickerComponent = (function () {
     ;
     MultipleDatePickerComponent.prototype.toggleDay = function (event, day) {
         event.preventDefault();
-        if (day.mdp.otherMonth && !this.fireEventsForDaysOfSurroundingMonths) {
+        if (!this.allowDaySelection) {
+            return;
+        }
+        else if (day.mdp.otherMonth && !this.fireEventsForDaysOfSurroundingMonths) {
             return;
         }
         var prevented = false;
@@ -358,6 +362,7 @@ var MultipleDatePickerComponent = (function () {
         'disableDaysAfter': [{ type: core_1.Input },],
         'changeYearPast': [{ type: core_1.Input },],
         'changeYearFuture': [{ type: core_1.Input },],
+        'allowDaySelection': [{ type: core_1.Input },],
         'month': [{ type: core_1.Input },],
         'projectScope': [{ type: core_1.Input },],
         'daysOff': [{ type: core_1.Input },],

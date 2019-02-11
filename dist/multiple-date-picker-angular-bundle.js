@@ -45,6 +45,7 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     this.didDeselectDay = new core_1.EventEmitter();
                     this.monthChanged = new core_1.EventEmitter();
                     this.cssDaysOfSurroundingMonths = this.cssDaysOfSurroundingMonths || 'picker-empty';
+                    this.allowDaySelection = true;
                     this.arrow = 0;
                     this.month = moment().startOf('day'); // today's day at start of day midnight or passed in value
                     this.projectScope = [];
@@ -149,7 +150,10 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                 ;
                 MultipleDatePickerComponent.prototype.toggleDay = function (event, day) {
                     event.preventDefault();
-                    if (day.mdp.otherMonth && !this.fireEventsForDaysOfSurroundingMonths) {
+                    if (!this.allowDaySelection) {
+                        return;
+                    }
+                    else if (day.mdp.otherMonth && !this.fireEventsForDaysOfSurroundingMonths) {
                         return;
                     }
                     var prevented = false;
@@ -443,6 +447,10 @@ System.register("multiple-date-picker.component", ["@angular/core", "@angular/fo
                     core_1.Input(),
                     __metadata("design:type", String)
                 ], MultipleDatePickerComponent.prototype, "changeYearFuture", void 0);
+                __decorate([
+                    core_1.Input(),
+                    __metadata("design:type", Object)
+                ], MultipleDatePickerComponent.prototype, "allowDaySelection", void 0);
                 __decorate([
                     core_1.Input(),
                     __metadata("design:type", Object)

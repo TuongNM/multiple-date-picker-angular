@@ -38,6 +38,7 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     @Input() disableDaysAfter: moment.Moment;
     @Input() changeYearPast: string;
     @Input() changeYearFuture: string;
+    @Input() allowDaySelection = true;
     arrow: number = 0;
     monthAdjustment: any;
     @Input() month = moment().startOf('day');  // today's day at start of day midnight or passed in value
@@ -157,9 +158,15 @@ export class MultipleDatePickerComponent implements OnInit, ControlValueAccessor
     };
     toggleDay(event, day) {
         event.preventDefault();
-        if (day.mdp.otherMonth && !this.fireEventsForDaysOfSurroundingMonths) {
+        if (!this.allowDaySelection)
+        {
             return;
         }
+        else if (day.mdp.otherMonth && !this.fireEventsForDaysOfSurroundingMonths)
+        {
+            return;
+        }
+
         let prevented = false;
         event.preventDefault = () => {
             prevented = true;
